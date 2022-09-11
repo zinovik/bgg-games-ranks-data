@@ -2,7 +2,7 @@ const https = require("https");
 const fs = require("fs");
 
 const BGG_GAMES_RANKS_URL =
-  "https://raw.githubusercontent.com/zinovik/bgg-games-ranks-data/main/bgg-games-ranks.json";
+  "https://bgg-games-ranks.vercel.app/api/get-games?amount=2000";
 const BGG_GAMES_RANKS_FILE = "./bgg-games-ranks.json";
 
 const request = (url) =>
