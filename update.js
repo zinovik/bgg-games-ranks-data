@@ -1,5 +1,7 @@
 const https = require("https");
 const fs = require("fs");
+const { exec } = require("child_process");
+const { promisify } = require("util");
 
 const BGG_GAMES_RANKS_URL =
   "https://bgg-games-ranks.vercel.app/api/get-games?amount=2000";
@@ -24,4 +26,9 @@ const request = (url) =>
   const bggGamesRanks = await request(BGG_GAMES_RANKS_URL);
 
   fs.writeFileSync(BGG_GAMES_RANKS_FILE, JSON.stringify(bggGamesRanks));
+
+  console.log("Formatting file...");
+  await promisify(exec)(`npx prettier ${BGG_GAMES_RANKS_FILE} --write`);
+
+  console.log("Done!");
 })();
